@@ -1,0 +1,65 @@
+# LLM Configuration for Agentic RAG System
+
+# Primary LLM: Google Gemini
+primary:
+  provider: "google"
+  model: "gemini/gemini-2.0-flash-exp"
+  parameters:
+    temperature: 0.1
+    max_tokens: 2000
+    top_p: 0.9
+  timeout: 30
+  
+# Fallback LLM: Ollama with Qwen
+fallback:
+  provider: "ollama"
+  model: "ollama/qwen2.5:14b"
+  base_url: "http://localhost:11434"
+  parameters:
+    temperature: 0.1
+    max_tokens: 2000
+    num_ctx: 8192
+  timeout: 60
+  system_suffix: "IMPORTANT: Think and work in English only."
+
+# Retry Configuration
+retry:
+  max_attempts: 3
+  exponential_backoff: true
+  base_delay: 1
+  max_delay: 30
+
+# Rate Limiting
+rate_limit:
+  requests_per_minute: 60
+  tokens_per_minute: 100000
+
+# Prompt Templates Location
+prompts:
+  templates_dir: "src/llm/prompt_templates"
+  
+# Agent-Specific LLM Settings
+agents:
+  query_analyzer:
+    temperature: 0.1
+    max_tokens: 500
+    
+  retrieval_router:
+    temperature: 0.1
+    max_tokens: 300
+    
+  quality_assessor:
+    temperature: 0.1
+    max_tokens: 500
+    
+  query_rewriter:
+    temperature: 0.3  # Slightly higher for creativity
+    max_tokens: 500
+    
+  answer_synthesizer:
+    temperature: 0.1
+    max_tokens: 2000
+    
+  validator:
+    temperature: 0.1
+    max_tokens: 500

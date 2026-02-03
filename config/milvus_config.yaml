@@ -1,0 +1,69 @@
+# Milvus Configuration for Agentic RAG System
+
+# Collection Settings
+collection:
+  name: "agentic_rag_documents"
+  description: "Vector store for Agentic RAG document embeddings"
+  
+# Schema Configuration
+schema:
+  fields:
+    - name: "id"
+      type: "INT64"
+      is_primary: true
+      auto_id: true
+      
+    - name: "dense_vector"
+      type: "FLOAT_VECTOR"
+      dimension: 384  # For all-MiniLM-L6-v2; use 768 for all-mpnet-base-v2
+      
+    - name: "sparse_vector"
+      type: "SPARSE_FLOAT_VECTOR"
+      
+    - name: "text_content"
+      type: "VARCHAR"
+      max_length: 65535
+      
+    - name: "metadata_json"
+      type: "JSON"
+
+# Index Configuration
+index:
+  dense_index:
+    type: "HNSW"
+    metric_type: "COSINE"
+    params:
+      M: 16  # Number of bi-directional links
+      efConstruction: 200  # Size of dynamic candidate list during construction
+      
+  sparse_index:
+    type: "SPARSE_INVERTED_INDEX"
+    metric_type: "IP"  # Inner Product for sparse vectors
+
+# Search Configuration
+search:
+  dense:
+    params:
+      ef: 100  # Size of dynamic candidate list during search
+    top_k: 10
+    
+  sparse:
+    top_k: 10
+    
+  hybrid:
+    rrf_k: 60  # Reciprocal Rank Fusion constant
+    dense_weight: 0.7
+    sparse_weight: 0.3
+    top_k: 10
+
+# Connection Settings
+connection:
+  host: "localhost"
+  port: 19530
+  timeout: 30
+  
+# Performance Settings
+performance:
+  batch_size: 100
+  max_retries: 3
+  retry_delay: 1

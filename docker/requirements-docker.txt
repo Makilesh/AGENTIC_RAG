@@ -1,0 +1,46 @@
+# Agentic RAG System Dependencies - Docker Version
+# (torch installed separately as CPU-only)
+
+# Core Framework
+langgraph>=0.0.40
+langchain>=0.1.0
+langchain-community>=0.0.20
+
+# Vector Database
+pymilvus>=2.3.0
+
+# LLM Orchestration
+litellm>=1.20.0
+
+# Embeddings (will use pre-installed torch)
+sentence-transformers>=2.2.0
+
+# Web Framework
+streamlit>=1.30.0
+fastapi>=0.108.0
+uvicorn>=0.25.0
+
+# Document Processing
+PyMuPDF>=1.23.0
+python-docx>=1.1.0
+python-pptx>=0.6.23
+pandas>=2.1.0
+openpyxl>=3.1.0
+
+# Utilities
+python-dotenv>=1.0.0
+pydantic>=2.5.0
+numpy>=1.24.0
+
+# Sparse Vectors / BM25
+rank-bm25>=0.2.2
+
+# NLP
+nltk>=3.8.0
+spacy>=3.7.0
+
+# Additional
+tiktoken>=0.5.0
+aiohttp>=3.9.0
+tenacity>=8.2.0
+PyYAML>=6.0.0
