@@ -180,7 +180,4 @@ Query → Retrieve → Assess Quality
 
 MIT License
 
-## Acknowledgments
 
-Built for Vegam AI Engineer Assignment demonstrating sophisticated agentic AI workflows.
-Thank you for the oppurtunity
